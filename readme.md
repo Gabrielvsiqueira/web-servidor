@@ -13,12 +13,12 @@
 
 2. Após finalizar seu desenvolvimento, faça o push da sua branch:
    ```bash
-git push origin feature/nome-da-feature
+   git push origin feature/nome-da-feature
 
 3. Após dar o push, crie um Pull Request (PR) quando todo desenvolvimento for finalizado, apontado para a branch → dev.
 
 4. Quando a dev estiver pronta e estável, será feito um PR para a main.
- **Esse PR só pode ser aprovado com revisão de pelo menos uma pessoa do time.*
+ - **Esse PR só pode ser aprovado com revisão de pelo menos uma pessoa do time.**
  
  ## Conventional Commits
  - sugiro utilizarmos Convencional Commits para manter um histórico padronizado de commits. 
