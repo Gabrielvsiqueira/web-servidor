@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
-    <form name="form-login" action="index.php" method="POST" enctype="multipart/form-data">
+    <form name="form-login" action="../controllers/loginController.php" method="POST" enctype="multipart/form-data">
         <h1>Mapa de Classe</h1>
 
          <?php if (!empty($error)): ?>
