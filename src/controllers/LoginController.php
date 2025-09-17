@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once __DIR__ . '/../models/User.php';
 
 
@@ -7,17 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    if (empty($email) || empty($password)) {
-        $error = "Erro: preencha todos os campos!";
-    } else {
-        $user = checkUser($email, $password);
-        if ($user) {
-        echo "Bem-vindo, {$user['nome']}!";
+    $user = checkUser($email, $password);
 
-        } else {
-            $error = "Erro: e-mail ou senha inválidos!";
-        }
+    if ($user) {
+        $_SESSION['user'] = $user;
+        header('Location: ../views/Home.php');
+        exit;
+    } else {
+        header('Location: ../index.php?error=Email ou senha inválidos');
+        exit;
     }
 }
-
-require_once __DIR__ . '/../views/Login.php';
