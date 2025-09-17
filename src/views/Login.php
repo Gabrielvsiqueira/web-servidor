@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
-    <form name="form-login" action="User.models.php" method="POST" enctype="multipart/form-data">
+    <form name="form-login" action="index.php" method="POST" enctype="multipart/form-data">
+        <h1>Mapa de Classe</h1>
+
+         <?php if (!empty($error)): ?>
+            <p style="color:red;"><?= $error ?></p>
+        <?php endif; ?>
+
         <div>
             <label for="">Email :</label>
             <input type="text" name="email">
