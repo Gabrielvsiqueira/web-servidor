@@ -9,10 +9,12 @@
 <body>
     <form name="form-login" action="../controllers/loginController.php" method="POST" enctype="multipart/form-data">
         <h1>Mapa de Classe</h1>
+        <?php $error = $_GET['error'] ?? ''; ?>
 
-         <?php if (!empty($error)): ?>
-            <p style="color:red;"><?= $error ?></p>
+        <?php if (!empty($error)): ?>
+        <p style="color:red;"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
+
 
         <div>
             <label for="">Email :</label>
