@@ -54,7 +54,7 @@
 
         function updateAluno($id, $nome, $dataNascimento, $turma) {
             global $alunos;
-            foreach ($alunos as $aluno){
+            foreach ($alunos as &$aluno){
                 if($aluno['idAluno'] == $id) {
                     $aluno['nomeAluno'] = $nome;
                     $aluno['dataNascimento'] = $dataNascimento;

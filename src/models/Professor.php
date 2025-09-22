@@ -56,7 +56,7 @@
 
         function updateProfessor($id, $nome, $email, $dataNascimento, $disciplina) {
             global $professores;
-            foreach ($professores as $professor) {
+            foreach ($professores as &$professor) {
                 if ($professor['idProfessor'] == $id) {
                     $professor['nomeProfessor'] = $nome;
                     $professor['emailProfessor'] = $email;
