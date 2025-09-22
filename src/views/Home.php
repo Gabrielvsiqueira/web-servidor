@@ -19,7 +19,7 @@ $user = $_SESSION['user'];
     <p>Use os botões abaixo para acessar ou cadastrar informações:</p>
     <a href="../controllers/ProfessorController.php">Professores</a>
     <a href="../controllers/AlunoController.php">Alunos</a>
-    <a href=""> Turmas</a>
+    <a href="../controllers/TurmaController.php"> Turmas</a>
 
 </body>
 </html>
