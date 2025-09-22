@@ -1,29 +1,68 @@
 <?php
     $professores = [
         [
+            'idProfessor' => 1,
             'nomeProfessor' => 'Gabriel Siqueira',
-            'dataNascimento' => '25/02/2001',
-            'telefone' => '42 XXXX - XXXX',
-            'disciplina' => 'História',
-            'turma' => '5 ano'
-
+            'emailProfessor' => 'gabriel@teste.com',
+            'dataNascimento' => '2001-02-25',
+            'disciplina' => 'História'
         ],
         [
-            'nomeProfessor' => 'João Silva',
-            'dataNascimento' => '31/06/1990',
-            'telefone' => '43 XXXX - XXXX',
-            'disciplina' => 'Matemática',
-            'turma' => '1 EM'
+            'idProfessor' => 2,
+        'nomeProfessor' => 'João Silva',
+        'emailProfessor' => 'joao@teste.com',
+        'dataNascimento' => '1990-06-31',
+        'disciplina' => 'Matemática'
         ]
         ];
 
-        function checkProfessor () {
-            global $professores;
 
-            foreach($professores as $professor){
-                if ($professores['nomeProfessor'] === $nomeProfessor && $professores['Disciplina'] === $disciplina) {
+        function getProfessores() {
+            global $professores;
+            return $professores;
+        }
+
+        function getProfessorById($id) {
+            global $professores;
+            foreach ($professores as $professor) {
+                if ($professor['idProfessor'] == $id) {
                     return $professor;
                 }
             }
             return null;
+        }
+
+        function addProfessor($nome, $email, $dataNascimento, $disciplina) {
+            global $professores;
+            $novo = [
+                'idProfessor' => count($professores) + 1,
+                'nomeProfessor' => $nome,
+                'emailProfessor' => $email,
+                'dataNascimento' => $dataNascimento,
+                'disciplina' => $disciplina
+            ];
+            $professores[] = $novo;
+        }
+
+        function deleteProfessor($id) {
+            global $professores;
+            foreach ($professores as $key => $prof) {
+                if ($prof['idProfessor'] == $id) {
+                    unset($professores[$key]);
+                }
+            }
+            $professores = array_values($professores);
+        }
+
+        function updateProfessor($id, $nome, $email, $dataNascimento, $disciplina) {
+            global $professores;
+            foreach ($professores as &$professor) {
+                if ($professor['idProfessor'] == $id) {
+                    $professor['nomeProfessor'] = $nome;
+                    $professor['emailProfessor'] = $email;
+                    $professor['dataNascimento'] = $dataNascimento;
+                    $pprofessorof['disciplina'] = $disciplina;
+                    break;
+                }
+            }
         }

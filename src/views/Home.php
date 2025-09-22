@@ -17,9 +17,9 @@ $user = $_SESSION['user'];
     <h1>Diário Escola - Gestão Escolar</h1>
     <p>Bem-vindo ao sistema de gestão escolar. Este software facilita o acompanhamento das atividades pedagógicas, incluindo o registro de  aulas, gerenciamento de professores e alunos, organização de turmas e controle de ensalamento.</p>
     <p>Use os botões abaixo para acessar ou cadastrar informações:</p>
-    <button type="button" onclick="window.location.href='professores.php'">Professores</button>
-    <button type="button" onclick="window.location.href='turmas.php'">Turmas</button>
-    <button type="button" onclick="window.location.href='alunos.php'">Alunos</button>
+    <a href="../controllers/ProfessorController.php">Professores</a>
+    <a href="../controllers/AlunoController.php">Alunos</a>
+    <a href="../controllers/TurmaController.php"> Turmas</a>
 
 </body>
 </html>
