@@ -3,7 +3,7 @@ require_once __DIR__. '/../models/Aluno.php';
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
-if($_SERVER['REQUEST_METHOD'] == 'POST' && $action == 'create'){
+if($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'create'){
     $nome = $_POST['nomeAluno'] ?? '';
     $dataNascimento = $_POST['dataNascimento'] ?? '';
     $turma = $_POST['turma'] ?? '';
