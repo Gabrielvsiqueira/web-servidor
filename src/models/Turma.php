@@ -14,6 +14,41 @@ $turmas = [
         "materias" => "Matemática",
         "professor" => "João Silva",
     ],
+    [
+        "idTurma" => 3,
+        "anoTurma" => "6º ano",
+        "quantidadeAlunos" => 35,
+        "materias" => "Português",
+        "professor" => "Ana Paula Costa",
+    ],
+    [
+        "idTurma" => 4,
+        "anoTurma" => "8º ano",
+        "quantidadeAlunos" => 28,
+        "materias" => "Física",
+        "professor" => "Pedro Henrique",
+    ],
+    [
+        "idTurma" => 5,
+        "anoTurma" => "9º ano",
+        "quantidadeAlunos" => 32,
+        "materias" => "Química",
+        "professor" => "Mariana Oliveira",
+    ],
+    [
+        "idTurma" => 6,
+        "anoTurma" => "1º ano EM",
+        "quantidadeAlunos" => 45,
+        "materias" => "Biologia",
+        "professor" => "Carlos Santos",
+    ],
+    [
+        "idTurma" => 7,
+        "anoTurma" => "2º ano EM",
+        "quantidadeAlunos" => 38,
+        "materias" => "Geografia",
+        "professor" => "Sofia Fernandes",
+    ],
 ];
 
 function getTurmas() {

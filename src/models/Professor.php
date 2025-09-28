@@ -9,12 +9,47 @@
         ],
         [
             'idProfessor' => 2,
-        'nomeProfessor' => 'João Silva',
-        'emailProfessor' => 'joao@teste.com',
-        'dataNascimento' => '1990-06-31',
-        'disciplina' => 'Matemática'
+            'nomeProfessor' => 'João Silva',
+            'emailProfessor' => 'joao@teste.com',
+            'dataNascimento' => '1990-06-31',
+            'disciplina' => 'Matemática'
+        ],
+        [
+            'idProfessor' => 3,
+            'nomeProfessor' => 'Ana Paula Costa',
+            'emailProfessor' => 'ana.costa@escola.com',
+            'dataNascimento' => '1985-04-12',
+            'disciplina' => 'Português'
+        ],
+        [
+            'idProfessor' => 4,
+            'nomeProfessor' => 'Pedro Henrique',
+            'emailProfessor' => 'pedro.henrique@escola.com',
+            'dataNascimento' => '1978-09-03',
+            'disciplina' => 'Física'
+        ],
+        [
+            'idProfessor' => 5,
+            'nomeProfessor' => 'Mariana Oliveira',
+            'emailProfessor' => 'mariana.oliveria@escola.com',
+            'dataNascimento' => '1992-01-20',
+            'disciplina' => 'Química'
+        ],
+        [
+            'idProfessor' => 6,
+            'nomeProfessor' => 'Carlos Santos',
+            'emailProfessor' => 'carlos.santos@escola.com',
+            'dataNascimento' => '1988-07-07',
+            'disciplina' => 'Biologia'
+        ],
+        [
+            'idProfessor' => 7,
+            'nomeProfessor' => 'Sofia Fernandes',
+            'emailProfessor' => 'sofia.fernandes@escola.com',
+            'dataNascimento' => '1995-11-28',
+            'disciplina' => 'Geografia'
         ]
-        ];
+    ];
 
 
         function getProfessores() {
@@ -61,7 +96,7 @@
                     $professor['nomeProfessor'] = $nome;
                     $professor['emailProfessor'] = $email;
                     $professor['dataNascimento'] = $dataNascimento;
-                    $pprofessorof['disciplina'] = $disciplina;
+                    $professor['disciplina'] = $disciplina;
                     break;
                 }
             }
