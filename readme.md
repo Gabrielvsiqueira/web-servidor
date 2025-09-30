@@ -56,6 +56,8 @@ Acesse as rotas no navegador:
 **Email:** `maria123@gmail.com`
 **Senha:** `12345`
 
+**Rotas da aplicação :**
+
 `http://localhost:8080/views/Home.php` → **Tela inicial com lista de funcionalidades e explicação sobre o sistema.**
 
 `http://localhost:8080/controllers/AlunoController.php` → **Controle de alunos.**
