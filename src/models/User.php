@@ -1,15 +1,30 @@
 <?php
-    function checkUser($email, $password){
-        $mockUsers = [
-                'email' => 'teste@gmail.com',
-                'password' => 'teste123',
-                'nome' => 'Gabriel teste'
+        $users = [
+                [
+                    'nome' => 'Gabriel Siqueira',
+                    'email' => 'teste@gmail.com',
+                    'password' => '12345'
+                ],
+                [
+                    'nome' => 'Joãozinho',
+                    'email' => 'joaozinho@gmail.com',
+                    'password' => '12345'
+                ],
+                [
+                    'nome' => 'Maria',
+                    'email' => 'maria123@gmail.com',
+                    'password' => '12345'
+                ]
             ];
 
-            if($email === $mockUsers['email'] && $password === $mockUsers['password']){
-                return $mockUsers;
-            } else {
-                return null;
-            }
-    }
+    function checkUser($email, $password){
+        global $users;
 
+        foreach($users as $user){
+
+            if ($user['email'] === $email && $user['password'] === $password){
+                return $user;
+            }
+        }
+        return null;
+    }
