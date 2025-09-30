@@ -1,7 +1,7 @@
 # 📚 Sistema de Gestão Escolar - Trabalho 01
 
-Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.  
-É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando (arquitetura MVC)**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
+Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.
+É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando a arquitetura MVC**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
 
 ---
 
@@ -30,7 +30,7 @@ Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Se
 ## 🛠️ Tecnologias Utilizadas
 - **PHP 8+**
 - **HTML5**
-- **CSS**
+- **CSS3**
 
 ---
 
@@ -38,8 +38,7 @@ Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Se
 
 1. Clone este repositório: `git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)`
 
-Abra a pasta do projeto e configure seu servidor PHP (ex: Apache ou PHP embutido).
-Para rodar localmente, basta acessar a pasta src do projeto e executar:
+Abra a pasta do projeto e configure seu servidor PHP (ex: Apache ou PHP embutido). Caso deseje rodar localmente sem o uso de um servidor, o PHP faz isso nativamente. Basta acessar a pasta `src` do projeto e executar:
 ` php -S localhost:8080`
 
 Acesse as rotas no navegador:
@@ -49,7 +48,12 @@ Acesse as rotas no navegador:
 **Credenciais de teste (presentes em User.php):**
 
 **Email:** `teste@gmail.com`
+**Senha:** `12345`
 
+**Email:** `joaozinho@gmail.com`
+**Senha:** `12345`
+
+**Email:** `maria123@gmail.com`
 **Senha:** `12345`
 
 `http://localhost:8080/views/Home.php` → **Tela inicial com lista de funcionalidades e explicação sobre o sistema.**
@@ -62,6 +66,6 @@ Acesse as rotas no navegador:
 
 ## 📌 Observações Importantes
 
-- Os dados ainda não estão persistidos em banco de dados (são arrays mockados dentro dos models).
+- Os dados ainda não estão persistidos em banco de dados (são *arrays mockados* dentro dos *models*).
 - Ao atualizar a página, os dados voltam ao estado inicial.
-- Próximo passo sera integrar com um Banco de Dados para persistência real dos dados dos usuários.
+- O próximo passo será integrar com um Banco de Dados para persistência real dos dados dos usuários.
