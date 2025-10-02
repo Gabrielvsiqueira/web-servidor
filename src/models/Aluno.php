@@ -1,5 +1,8 @@
 <?php
-    $alunos = [
+session_start();
+
+if (!isset($_SESSION['alunos'])) {
+    $_SESSION['alunos'] = [
         [
             'idAluno' => 1,
             'nomeAluno' => 'Maria Silva',
@@ -43,15 +46,14 @@
             'turma' => '6º ano',
         ],
     ];
+}
 
         function getAunos(){
-            global $alunos;
-            return $alunos;
+            return $_SESSION['alunos'];
         }
 
         function getAlunoById($id){
-            global $alunos;
-            foreach ($alunos as $aluno){
+            foreach ($_SESSION['alunos'] as $aluno){
                 if ($aluno['idAluno'] == $id){
                     return $aluno;
                 }
@@ -60,29 +62,27 @@
         }
 
         function addAluno($nome, $dataNascimento, $turma){
-            global $alunos;
+            $alunos = $_SESSION['alunos'];
             $novo = [
                 'idAluno' => count($alunos) + 1,
                 'nomeAluno' => $nome,
                 'dataNascimento' => $dataNascimento,
                 'turma' => $turma
             ];
-            $alunos[] = $novo;
+            $_SESSION['alunos'][] = $novo;
         }
 
         function deleteAluno($id) {
-            global $alunos;
-            foreach ($alunos as $key => $aluno) {
+            foreach ($_SESSION['alunos'] as $key => $aluno) {
                 if($aluno['idAluno'] == $id){
-                    unset($alunos[$key]);
+                    unset($_SESSION['alunos'][$key]);
                 }
             }
-            $alunos = array_values($alunos);
+            $_SESSION['alunos'] = array_values($_SESSION['alunos']);
         }
 
         function updateAluno($id, $nome, $dataNascimento, $turma) {
-            global $alunos;
-            foreach ($alunos as &$aluno){
+            foreach ($_SESSION['alunos'] as &$aluno){
                 if($aluno['idAluno'] == $id) {
                     $aluno['nomeAluno'] = $nome;
                     $aluno['dataNascimento'] = $dataNascimento;

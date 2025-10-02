@@ -35,26 +35,50 @@ Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Se
 ---
 
 ## 📋 Como Usar
+🔹 **Linux / macOS**
 
-1. Clone este repositório: `git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)`
+- O PHP pode ser instalado facilmente via gerenciador de pacotes.
 
-Abra a pasta do projeto e configure seu servidor PHP (ex: Apache ou PHP embutido). Caso deseje rodar localmente sem o uso de um servidor, o PHP faz isso nativamente. Basta acessar a pasta `src` do projeto e executar:
-` php -S localhost:8080`
+- Verifique se o PHP está instalado: `` php -v ``
 
-Acesse as rotas no navegador:
+Caso não tenha, instale:
 
-`http://localhost:8080` → Página de Login do sistema
+- Ubuntu/Debian: `` sudo apt install php``
+- Fedora: `` sudo dnf install php``
+- macOS (Homebrew): ``brew install php``
+
+Para rodar o servidor local: ``php -S localhost:8080 ``
+
+Acesse no navegador: 👉 http://localhost:8080
+
+🔹 **Windows (com WSL)**
+
+- Se você usa WSL, o processo é o mesmo do Linux: ``php -S localhost:8080``
+
+⚠️ Observação: mesmo rodando o PHP dentro do WSL, você pode abrir o navegador no Windows e acessar normalmente http://localhost:8080
+
+🔹 **Windows (sem WSL – usando XAMPP)**
+
+- No Windows sem WSL, é necessário um servidor como XAMPP:
+
+- Baixe e instale o XAMPP.
+
+- Coloque a pasta do projeto dentro do diretório htdocs do XAMPP.
+- Exemplo: ``C:\xampp\htdocs\gestao-escolar``
+
+- Inicie o Apache pelo painel de controle do XAMPP.
+
+No navegador, acesse: 👉 http://localhost/gestao-escolar/src
+
+##
 
 **Credenciais de teste (presentes em User.php):**
 
-**Email:** `teste@gmail.com`
-**Senha:** `12345`
+**Email:** `teste@gmail.com`   **Senha:** `12345`
 
-**Email:** `joaozinho@gmail.com`
-**Senha:** `12345`
+**Email:** `joaozinho@gmail.com` **Senha:** `12345`
 
-**Email:** `maria123@gmail.com`
-**Senha:** `12345`
+**Email:** `maria123@gmail.com` **Senha:** `12345`
 
 **Rotas da aplicação :**
 
