@@ -1,5 +1,7 @@
 <?php
-    $professores = [
+session_start();
+if (!isset($_SESSION['professores'])) {
+    $_SESSION['professores'] = [
         [
             'idProfessor' => 1,
             'nomeProfessor' => 'Gabriel Siqueira',
@@ -48,56 +50,52 @@
             'emailProfessor' => 'sofia.fernandes@escola.com',
             'dataNascimento' => '1995-11-28',
             'disciplina' => 'Geografia'
-        ]
+        ],
     ];
+}
 
+function getProfessores() {
+    return $_SESSION['professores'];
+}
 
-        function getProfessores() {
-            global $professores;
-            return $professores;
+function getProfessorById($id) {
+    foreach ($_SESSION['professores'] as $professor) {
+        if ($professor['idProfessor'] == $id) {
+            return $professor;
         }
+    }
+    return null;
+}
 
-        function getProfessorById($id) {
-            global $professores;
-            foreach ($professores as $professor) {
-                if ($professor['idProfessor'] == $id) {
-                    return $professor;
-                }
-            }
-            return null;
-        }
+function addProfessor($nome, $email, $dataNascimento, $disciplina) {
+    $professores = $_SESSION['professores'];
+    $novo = [
+        'idProfessor' => count($professores) + 1,
+        'nomeProfessor' => $nome,
+        'emailProfessor' => $email,
+        'dataNascimento' => $dataNascimento,
+        'disciplina' => $disciplina
+    ];
+    $_SESSION['professores'][] = $novo;
+}
 
-        function addProfessor($nome, $email, $dataNascimento, $disciplina) {
-            global $professores;
-            $novo = [
-                'idProfessor' => count($professores) + 1,
-                'nomeProfessor' => $nome,
-                'emailProfessor' => $email,
-                'dataNascimento' => $dataNascimento,
-                'disciplina' => $disciplina
-            ];
-            $professores[] = $novo;
+function deleteProfessor($id) {
+    foreach ($_SESSION['professores'] as $key => $prof) {
+        if ($prof['idProfessor'] == $id) {
+            unset($_SESSION['professores'][$key]);
         }
+    }
+    $_SESSION['professores'] = array_values($_SESSION['professores']);
+}
 
-        function deleteProfessor($id) {
-            global $professores;
-            foreach ($professores as $key => $prof) {
-                if ($prof['idProfessor'] == $id) {
-                    unset($professores[$key]);
-                }
-            }
-            $professores = array_values($professores);
+function updateProfessor($id, $nome, $email, $dataNascimento, $disciplina) {
+    foreach ($_SESSION['professores'] as &$professor) {
+        if ($professor['idProfessor'] == $id) {
+            $professor['nomeProfessor'] = $nome;
+            $professor['emailProfessor'] = $email;
+            $professor['dataNascimento'] = $dataNascimento;
+            $professor['disciplina'] = $disciplina;
+            break;
         }
-
-        function updateProfessor($id, $nome, $email, $dataNascimento, $disciplina) {
-            global $professores;
-            foreach ($professores as &$professor) {
-                if ($professor['idProfessor'] == $id) {
-                    $professor['nomeProfessor'] = $nome;
-                    $professor['emailProfessor'] = $email;
-                    $professor['dataNascimento'] = $dataNascimento;
-                    $professor['disciplina'] = $disciplina;
-                    break;
-                }
-            }
-        }
+    }
+}
