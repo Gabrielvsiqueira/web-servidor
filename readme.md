@@ -1,7 +1,7 @@
 # 📚 Sistema de Gestão Escolar - Trabalho 01
 
-Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.  
-É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando (arquitetura MVC)**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
+Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.
+É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando a arquitetura MVC**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
 
 ---
 
@@ -30,16 +30,16 @@ Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Se
 ## 🛠️ Tecnologias Utilizadas
 - **PHP 8+**
 - **HTML5**
-- **CSS**
+- **CSS3**
 
 ---
 
 ## 📋 Como Usar
 🔹 **Linux / macOS**
 
-O PHP pode ser instalado facilmente via gerenciador de pacotes.
+- O PHP pode ser instalado facilmente via gerenciador de pacotes.
 
-Verifique se o PHP está instalado: `` php -v ``
+- Verifique se o PHP está instalado: `` php -v ``
 
 Caso não tenha, instale:
 
@@ -49,15 +49,13 @@ Caso não tenha, instale:
 
 Para rodar o servidor local: ``php -S localhost:8080 ``
 
-Acesse no navegador:
-👉 http://localhost:8080
+Acesse no navegador: 👉 http://localhost:8080
 
 🔹 **Windows (com WSL)**
 
 - Se você usa WSL, o processo é o mesmo do Linux: ``php -S localhost:8080``
 
 ⚠️ Observação: mesmo rodando o PHP dentro do WSL, você pode abrir o navegador no Windows e acessar normalmente http://localhost:8080
-.
 
 🔹 **Windows (sem WSL – usando XAMPP)**
 
@@ -82,6 +80,8 @@ No navegador, acesse: 👉 http://localhost/gestao-escolar/src
 
 **Email:** `maria123@gmail.com` **Senha:** `12345`
 
+**Rotas da aplicação :**
+
 `http://localhost:8080/views/Home.php` → **Tela inicial com lista de funcionalidades e explicação sobre o sistema.**
 
 `http://localhost:8080/controllers/AlunoController.php` → **Controle de alunos.**
@@ -92,6 +92,6 @@ No navegador, acesse: 👉 http://localhost/gestao-escolar/src
 
 ## 📌 Observações Importantes
 
-- Os dados ainda não estão persistidos em banco de dados (são arrays mockados dentro dos models).
+- Os dados ainda não estão persistidos em banco de dados (são *arrays mockados* dentro dos *models*).
 - Ao atualizar a página, os dados voltam ao estado inicial.
-- Próximo passo sera integrar com um Banco de Dados para persistência real dos dados dos usuários.
+- O próximo passo será integrar com um Banco de Dados para persistência real dos dados dos usuários.
