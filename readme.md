@@ -1,5 +1,7 @@
 # 📚 Sistema de Gestão Escolar - Trabalho 01
 
+Aluno: Gabriel Vitor Siqueira - RA: 2201631
+
 Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.
 É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando a arquitetura MVC**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
 
