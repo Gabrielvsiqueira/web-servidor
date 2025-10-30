@@ -1,93 +1,47 @@
 <?php
-session_start();
 
-if (!isset($_SESSION['alunos'])) {
-    $_SESSION['alunos'] = [
-        [
-            'idAluno' => 1,
-            'nomeAluno' => 'Maria Silva',
-            'dataNascimento' => '25/02/2001',
-            'turma' => '5º ano',
-        ],
-        [
-            'idAluno' => 2,
-            'nomeAluno' => 'Diogo Oliveira',
-            'dataNascimento' => '10/08/2003',
-            'turma' => '7º ano',
-        ],
-        [
-            'idAluno' => 3,
-            'nomeAluno' => 'Ana Paula Santos',
-            'dataNascimento' => '15/11/2002',
-            'turma' => '6º ano',
-        ],
-        [
-            'idAluno' => 4,
-            'nomeAluno' => 'Lucas Ferreira',
-            'dataNascimento' => '03/04/2004',
-            'turma' => '8º ano',
-        ],
-        [
-            'idAluno' => 5,
-            'nomeAluno' => 'Juliana Costa',
-            'dataNascimento' => '20/07/2001',
-            'turma' => '5º ano',
-        ],
-        [
-            'idAluno' => 6,
-            'nomeAluno' => 'Pedro Rocha',
-            'dataNascimento' => '08/01/2003',
-            'turma' => '7º ano',
-        ],
-        [
-            'idAluno' => 7,
-            'nomeAluno' => 'Fernanda Lima',
-            'dataNascimento' => '29/09/2002',
-            'turma' => '6º ano',
-        ],
-    ];
+namespace App\Models;
+
+use PDO;
+use App\Config\Database;
+class Aluno {
+    public static function getAll() {
+        $db = Database::getConnection();
+        $stmt = $db->query("SELECT * FROM alunos");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getById($id) {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT * FROM alunos WHERE idAluno = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function create($data) {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("INSERT INTO alunos (nomeAluno, dataNascimento, turma) VALUES (:nome, :dataNascimento, :turma)");
+        $stmt->execute([
+            'nome' => $data['nomeAluno'],
+            'dataNascimento' => $data['dataNascimento'],
+            'turma' => $data['turma']
+        ]);
+    }
+
+    public static function update($id, $data) {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("UPDATE alunos SET nomeAluno = :nome, dataNascimento = :dataNascimento, turma = :turma WHERE idAluno = :id");
+        $stmt->execute([
+            'id' => $id,
+            'nome' => $data['nomeAluno'],
+            'dataNascimento' => $data['dataNascimento'],
+            'turma' => $data['turma']
+        ]);
+    }
+
+    public static function delete($id) {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("DELETE FROM alunos WHERE idAluno = :id");
+        $stmt->execute(['id' => $id]);
+    }
 }
-
-        function getAunos(){
-            return $_SESSION['alunos'];
-        }
-
-        function getAlunoById($id){
-            foreach ($_SESSION['alunos'] as $aluno){
-                if ($aluno['idAluno'] == $id){
-                    return $aluno;
-                }
-            }
-            return null;
-        }
-
-        function addAluno($nome, $dataNascimento, $turma){
-            $alunos = $_SESSION['alunos'];
-            $novo = [
-                'idAluno' => count($alunos) + 1,
-                'nomeAluno' => $nome,
-                'dataNascimento' => $dataNascimento,
-                'turma' => $turma
-            ];
-            $_SESSION['alunos'][] = $novo;
-        }
-
-        function deleteAluno($id) {
-            foreach ($_SESSION['alunos'] as $key => $aluno) {
-                if($aluno['idAluno'] == $id){
-                    unset($_SESSION['alunos'][$key]);
-                }
-            }
-            $_SESSION['alunos'] = array_values($_SESSION['alunos']);
-        }
-
-        function updateAluno($id, $nome, $dataNascimento, $turma) {
-            foreach ($_SESSION['alunos'] as &$aluno){
-                if($aluno['idAluno'] == $id) {
-                    $aluno['nomeAluno'] = $nome;
-                    $aluno['dataNascimento'] = $dataNascimento;
-                    $aluno['turma'] = $turma;
-                    break;
-                }
-            }
-        }

@@ -1,44 +1,51 @@
 <?php
-require_once __DIR__ . '/../models/Turma.php';
 
-$action = $_GET['action'] ?? $_POST['action'] ?? '';
+namespace App\Controllers;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'create') {
-    $serie = $_POST['serie'] ?? '';
-    $totalAlunos = $_POST['totalAlunos'] ?? '';
-    $materia = $_POST['materia'] ?? '';
-    $professor = $_POST['professor'] ?? '';
+use App\Models\Turma;
 
-    if ($serie && $totalAlunos && $materia && $professor) {
-        addTurma($serie, $totalAlunos, $materia, $professor);
+class TurmaController {
+    public function index() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        $turmas = Turma::getAll();
+        $turmaEdit = null;
+        if (isset($_GET['id'])) {
+            $turmaEdit = Turma::getById($_GET['id']);
+        }
+        require_once __DIR__ . '/../Views/turma.php';
+    }
+
+    public function create() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Turma::create($_POST);
+        header('Location: /turmas');
+    }
+
+    public function update($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Turma::update($id, $_POST);
+        header('Location: /turmas');
+    }
+
+    public function delete($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Turma::delete($id);
+        header('Location: /turmas');
     }
 }
-
-if ($action === 'delete') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        deleteTurma($id);
-    }
-}
-
-if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['idTurma'];
-    $serie = $_POST['serie'];
-    $totalAlunos = $_POST['totalAlunos'];
-    $materia = $_POST['materia'];
-    $professor = $_POST['professor'];
-
-    updateTurma($id, $serie, $totalAlunos, $materia, $professor);
-}
-
-$turmas = getTurmas();
-
-$turmaEdit = null;
-if ($action === 'edit') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        $turmaEdit = getTurmaById($id);
-    }
-}
-
-include __DIR__ . '/../views/turma.php';

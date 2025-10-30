@@ -1,30 +1,14 @@
 <?php
-        $users = [
-                [
-                    'nome' => 'Gabriel Siqueira',
-                    'email' => 'teste@gmail.com',
-                    'password' => '12345'
-                ],
-                [
-                    'nome' => 'Joãozinho',
-                    'email' => 'joaozinho@gmail.com',
-                    'password' => '12345'
-                ],
-                [
-                    'nome' => 'Maria',
-                    'email' => 'maria123@gmail.com',
-                    'password' => '12345'
-                ]
-            ];
+namespace App\Models;
 
-    function checkUser($email, $password){
-        global $users;
+use PDO;
+use App\Config\Database;
 
-        foreach($users as $user){
-
-            if ($user['email'] === $email && $user['password'] === $password){
-                return $user;
-            }
-        }
-        return null;
+class User {
+    public static function checkUser($email, $password) {
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+        $stmt->execute(['email' => $email, 'password' => $password]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+}
