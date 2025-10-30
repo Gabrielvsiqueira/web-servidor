@@ -1,44 +1,51 @@
 <?php
-require_once __DIR__ . '/../models/Professor.php';
 
-$action = $_GET['action'] ?? $_POST['action'] ?? '';
+namespace App\Controllers;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'create') {
-    $nome = $_POST['nomeProfessor'] ?? '';
-    $email = $_POST['emailProfessor'] ?? '';
-    $dataNascimento = $_POST['dataNascimento'] ?? '';
-    $disciplina = $_POST['disciplina'] ?? '';
+use App\Models\Professor;
 
-    if ($nome && $email && $dataNascimento && $disciplina) {
-        addProfessor($nome, $email, $dataNascimento, $disciplina);
+class ProfessorController {
+    public function index() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        $professores = Professor::getAll();
+        $professorEdit = null;
+        if (isset($_GET['id'])) {
+            $professorEdit = Professor::getById($_GET['id']);
+        }
+        require_once __DIR__ . '/../Views/professor.php';
+    }
+
+    public function create() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Professor::create($_POST);
+        header('Location: /professores');
+    }
+
+    public function update($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Professor::update($id, $_POST);
+        header('Location: /professores');
+    }
+
+    public function delete($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Professor::delete($id);
+        header('Location: /professores');
     }
 }
-
-if ($action === 'delete') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        deleteProfessor($id);
-    }
-}
-
-if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['idProfessor'];
-    $nome = $_POST['nomeProfessor'];
-    $email = $_POST['emailProfessor'];
-    $dataNascimento = $_POST['dataNascimento'];
-    $disciplina = $_POST['disciplina'];
-
-    updateProfessor($id, $nome, $email, $dataNascimento, $disciplina);
-}
-
-$professores = getProfessores();
-
-$professorEdit = null;
-if ($action === 'edit') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        $professorEdit = getProfessorById($id);
-    }
-}
-
-include __DIR__ . '/../views/professor.php';
