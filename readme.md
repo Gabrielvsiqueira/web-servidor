@@ -1,28 +1,43 @@
-# 📚 Sistema de Gestão Escolar - Trabalho 01
+# 📚 Sistema de Gestão Escolar — Trabalho 02
 
-Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Servidor** da UTFPR.
-É um sistema simples de **Gestão Escolar**, desenvolvido em **PHP utilizando a arquitetura MVC**. O sistema permite o gerenciamento de **Alunos, Professores e Turmas**, com operações básicas de **CRUD (Criar, Listar, Editar e Excluir)**.
+Este projeto foi desenvolvido como parte dos **Trabalhos 01 e 02** da disciplina de **Desenvolvimento Web-Servidor** da **UTFPR**.<br/>
+O sistema tem como objetivo gerenciar informações de uma instituição escolar, permitindo o **CRUD (Criar, Ler, Atualizar e Excluir)** de **Alunos**, **Professores** e **Turmas**.
 
 ---
 
-## 🚀 Funcionalidades do Sistema
+## 🎯 Objetivo do Projeto
+
+O projeto tem como finalidade aplicar os conceitos aprendidos na disciplina de Desenvolvimento Web-Servidor, divididos em duas etapas:
+
+### 🔹 Trabalho 01
+Desenvolvimento inicial de um sistema web em **PHP (versão 8+)**, utilizando **arquitetura MVC** e **mock de dados** para simulação de persistência.
+
+### 🔹 Trabalho 02
+Novos Requisitos Implementados:
+- Refatoração das classes utilizando conceitos de **Orientação à Objetos**.
+- Utilização do **Composer** com Autoload e o uso de **packages PHP** para o projeto.
+- Utilização de um **database relacional (MySQL) via PDO**.
+- Uso de um sistema de rotas (URL transparente).
+---
+
+## 🚀 Funcionalidades
 
 ### 👩‍🎓 Alunos
 - Cadastrar novo aluno (nome, data de nascimento e turma).
-- Listar todos os alunos cadastrados.
-- Editar informações de um aluno existente.
+- Listar alunos cadastrados.
+- Editar informações de um aluno.
 - Excluir alunos.
 
 ### 👨‍🏫 Professores
 - Cadastrar novo professor.
 - Listar professores cadastrados.
-- Editar informações.
+- Editar informações de professores.
 - Excluir professores.
 
 ### 🏫 Turmas
-- Criar turmas.
+- Criar novas turmas.
 - Listar turmas disponíveis.
-- Editar turmas.
+- Editar informações de uma turma.
 - Excluir turmas.
 
 ---
@@ -31,67 +46,115 @@ Este projeto compõe o **Trabalho 01** da disciplina de **Desenvolvimento Web-Se
 - **PHP 8+**
 - **HTML5**
 - **CSS3**
+- **Docker**
+- **Composer**
+- **Banco de Dados MySQL**
+- **Bramus(router)**
+---
+## 📌 Observações Importantes
+
+- Recomenda-se a utilização do Docker. Docker permite criar e gerenciar containers de forma rápida e padronizada, ideal para garantir que o ambiente de banco de dados seja o mesmo em qualquer máquina.
+- Se atentar a versão do PHP, caso o PHP esteja com uma versão menor que a 8, o Composer pode apontar erros na utilização.
 
 ---
 
-## 📋 Como Usar
-🔹 **Linux / macOS**
+## 💻 Como Executar o Projeto
 
-- O PHP pode ser instalado facilmente via gerenciador de pacotes.
+### Pré-requisitos
+- PHP 8+
+- Composer
+- Docker
 
-- Verifique se o PHP está instalado: `` php -v ``
+### Configuração do Banco de Dados com Docker
 
-Caso não tenha, instale:
+**1. Instale o Docker:**
+- Certifique-se de ter o Docker instalado e em execução na sua máquina.
 
-- Ubuntu/Debian: `` sudo apt install php``
-- Fedora: `` sudo dnf install php``
-- macOS (Homebrew): ``brew install php``
+**2. Rode a imagem do MySQL:**
+- Abra o terminal e execute o seguinte comando para baixar e iniciar um container MySQL:
 
-Para rodar o servidor local: ``php -S localhost:8080 ``
+```bash
+docker run --name mysql-gestao-escolar -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE=gestao_escolar -p 3306:3306 -d mysql:latest
+```
+Este comando irá:
+- Criar um container chamado mysql-gestao-escolar.
+- Definir a senha do usuário root como rootpassword.
+- Criar um banco de dados chamado gestao_escolar.
+- Mapear a porta 3306 do container para a porta 3306 da sua máquina.
+- Executar o container em segundo plano.
 
-Acesse no navegador: 👉 http://localhost:8080
+**3. Verificar se o container está em execução:**
+```bash
+docker ps
+```
 
-🔹 **Windows (com WSL)**
+### 🔹 Linux / macOS
 
-- Se você usa WSL, o processo é o mesmo do Linux: ``php -S localhost:8080``
+**1. Clone o repositório:**
+```bash
+git clone git@github.com:Gabrielvsiqueira/web-servidor.git
+cd web-servidor
+```
 
-⚠️ Observação: mesmo rodando o PHP dentro do WSL, você pode abrir o navegador no Windows e acessar normalmente http://localhost:8080
+**2. Instale as dependências:**
+```bash
+composer install
+```
 
-🔹 **Windows (sem WSL – usando XAMPP)**
+**3. Inicie o servidor PHP (para sistemas baseados em UNIX não é necessário utilização do Apache):**
+```bash
+php -S localhost:8080 -t public
+```
+Acesse no navegador: 👉 [http://localhost:8080](http://localhost:8080)
 
-- No Windows sem WSL, é necessário um servidor como XAMPP:
+### 🔹 Windows (com WSL)
 
-- Baixe e instale o XAMPP.
+**1. Clone o repositório no ambiente WSL:**
+```bash
+git clone git@github.com:Gabrielvsiqueira/web-servidor.git
+cd web-servidor
+```
 
-- Coloque a pasta do projeto dentro do diretório htdocs do XAMPP.
-- Exemplo: ``C:\xampp\htdocs\gestao-escolar``
+**2. Instale as dependências:**
+```bash
+composer install
+```
 
-- Inicie o Apache pelo painel de controle do XAMPP.
+**3. Inicie o servidor PHP (para sistemas baseados em UNIX não é necessário utilização do Apache):**
+```bash
+php -S localhost:8080 -t public
+```
+Acesse no navegador: 👉 [http://localhost:8080](http://localhost:8080)
 
-No navegador, acesse: 👉 http://localhost/gestao-escolar/src
+### 🔹 Windows (sem WSL — XAMPP)
 
-##
+**1. Clone o repositório:**
+- Clone o repositório para o diretório htdocs do seu XAMPP ```(C:\xampp\htdocs).```
 
-**Credenciais de teste (presentes em User.php):**
+**2. Instale as dependências:**
+```bash
+composer install
+```
 
-**Email:** `teste@gmail.com`   **Senha:** `12345`
+**3. Inicie o Apache e o MySQL**
+- Abra o painel de controle do XAMPP e inicie os serviços do Apache e do MySQL.
 
-**Email:** `joaozinho@gmail.com` **Senha:** `12345`
+**4. Acesso o projeto**
+Acesse no navegador: 👉 [http://localhost/<nome-da-pasta-do-projeto>/public](http://localhost/<nome-da-pasta-do-projeto>/public)
 
-**Email:** `maria123@gmail.com` **Senha:** `12345`
+---
 
-**Rotas da aplicação :**
+## 🔐 Credenciais de Teste
 
-`http://localhost:8080/views/Home.php` → **Tela inicial com lista de funcionalidades e explicação sobre o sistema.**
+| Usuário | Email | Senha |
+|----------|--------|--------|
+| Usuário 1 | teste@gmail.com | 12345 |
+| Usuário 2 | joaozinho@gmail.com | 12345 |
+| Usuário 3 | maria123@gmail.com | 12345 |
 
-`http://localhost:8080/controllers/AlunoController.php` → **Controle de alunos.**
+---
 
-`http://localhost:8080/controllers/ProfessorController.php` → **Controle de professores.**
-
-`http://localhost:8080/controllers/TurmaController.php` → **Controle de turmas.**
-
-## 📌 Observações Importantes
-
-- Os dados ainda não estão persistidos em banco de dados (são *arrays mockados* dentro dos *models*).
-- Ao atualizar a página, os dados voltam ao estado inicial.
-- O próximo passo será integrar com um Banco de Dados para persistência real dos dados dos usuários.
+## 👨‍💻 Desenvolvedor
+**Gabriel Vitor Siqueira**<br/>
+Disciplina: Desenvolvimento Web-Servidor <br/>
+UTFPR Ano: 2025
