@@ -1,43 +1,51 @@
 <?php
-require_once __DIR__. '/../models/Aluno.php';
 
-$action = $_GET['action'] ?? $_POST['action'] ?? '';
+namespace App\Controllers;
 
-if($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'create'){
-    $nome = $_POST['nomeAluno'] ?? '';
-    $dataNascimento = $_POST['dataNascimento'] ?? '';
-    $turma = $_POST['turma'] ?? '';
+use App\Models\Aluno;
 
-    if($nome && $dataNascimento && $turma != ''){
-        addAluno($nome, $dataNascimento, $turma);
+class AlunoController {
+    public function index() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        $alunos = Aluno::getAll();
+        $alunoEdit = null;
+        if (isset($_GET['id'])) {
+            $alunoEdit = Aluno::getById($_GET['id']);
+        }
+        require_once __DIR__ . '/../Views/aluno.php';
     }
 
-}
+    public function create() {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Aluno::create($_POST);
+        header('Location: /alunos');
+    }
 
-if ($action === 'delete') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        deleteAluno($id);
+    public function update($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Aluno::update($id, $_POST);
+        header('Location: /alunos');
+    }
+
+    public function delete($id) {
+        session_start();
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        Aluno::delete($id);
+        header('Location: /alunos');
     }
 }
-
-if ($action === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['idAluno'];
-    $nome = $_POST['nomeAluno'];
-    $dataNascimento = $_POST['dataNascimento'];
-    $turma = $_POST['turma'];
-
-    updateAluno($id, $nome, $dataNascimento, $turma);
-}
-
-$alunos = getAunos();
-
-$alunoEdit = null;
-if ($action === 'edit') {
-    $id = $_GET['id'] ?? null;
-    if ($id) {
-        $alunoEdit = getAlunoById($id);
-    }
-}
-
-require_once __DIR__. '/../views/Aluno.php';
